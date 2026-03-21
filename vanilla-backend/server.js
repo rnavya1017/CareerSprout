@@ -12,7 +12,8 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '../vanilla-frontend')));
 
 // Database Setup
-const DB_FILE = path.join(__dirname, 'users.json');
+const DB_DIR = process.env.DATA_DIR || __dirname;
+const DB_FILE = path.join(DB_DIR, 'users.json');
 if (!fs.existsSync(DB_FILE)) fs.writeFileSync(DB_FILE, JSON.stringify([]));
 
 const getUsers = () => JSON.parse(fs.readFileSync(DB_FILE, 'utf8'));
