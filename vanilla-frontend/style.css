@@ -2739,3 +2739,306 @@ select option {
         display: none;
     }
 }
+
+/* ── Hero Relocated Styles ────────────────────────── */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: #000;
+}
+
+.hero-bg-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.hero-bg-overlay::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(77,166,255,0.12) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.hero-text-content {
+    flex: 1;
+    min-width: 300px;
+}
+
+.hero-title {
+    font-size: 4.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, #3b82f6, #10b981);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-blue {
+    color: #2563eb;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: #a3a3a3;
+    max-width: 500px;
+    margin-bottom: 3rem;
+    line-height: 1.7;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.hero-btns .btn-primary {
+    font-size: 1.1rem;
+    padding: 1rem 2.5rem;
+    border-radius: 9999px;
+    background: #2563eb;
+    font-weight: 700;
+}
+
+.btn-outline-white {
+    font-size: 1.1rem;
+    padding: 1rem 2.5rem;
+    border-radius: 9999px;
+    background: #1c1c1c;
+    color: white;
+    border: 1px solid #333;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-outline-white:hover {
+    background: #2a2a2a;
+    border-color: #555;
+}
+
+.globe-wrapper {
+    flex: 0 0 520px;
+    width: 520px;
+    height: 520px;
+    position: relative;
+    user-select: none;
+    max-width: 100%;
+}
+
+.globe-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 50%;
+    cursor: grab;
+}
+
+.globe-tooltip {
+    position: absolute;
+    padding: 6px 14px;
+    background: rgba(0,0,0,0.9);
+    border: 1px solid #3b82f6;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.25s;
+    white-space: nowrap;
+    z-index: 20;
+    box-shadow: 0 4px 20px rgba(59,130,246,0.4);
+}
+
+/* ── World Map Relocated Styles ───────────────────────── */
+.world-map-section {
+    padding: 10rem 0;
+    background: #000;
+    position: relative;
+    overflow: hidden;
+}
+
+.world-map-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    padding: 0 5%;
+}
+
+.world-map-title {
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.text-gray {
+    color: #9ca3af;
+    display: inline-block;
+}
+
+.world-map-subtitle {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #e5e7eb;
+    margin-bottom: 0.5rem;
+}
+
+.world-map-quote {
+    font-size: 1rem;
+    color: #9ca3af;
+    max-width: 480px;
+    margin: 0 auto 3rem;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+.world-map-container {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    height: 500px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.world-map-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: invert(1) opacity(0.15) sepia(1) hue-rotate(180deg) saturate(3);
+}
+
+.world-map-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* ── Additional Mobile Media Queries ──────────────────── */
+@media (max-width: 992px) {
+    .hero-content {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding-top: 5rem;
+    }
+    .hero-btns {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Fix Hero */
+    .hero-title {
+        font-size: 3rem !important;
+    }
+    .globe-wrapper {
+        flex: 0 0 350px !important;
+        width: 350px !important;
+        height: 350px !important;
+        margin: 0 auto;
+    }
+    .hero-subtitle {
+        font-size: 1.05rem;
+    }
+    
+    /* Fix World Map */
+    .world-map-section {
+        padding: 5rem 0;
+    }
+    .world-map-title {
+        font-size: 2rem;
+    }
+    .world-map-container {
+        height: 300px;
+    }
+
+    /* Fix Layout Grids */
+    .courses-grid,
+    .jobs-grid,
+    .linkedin-generator,
+    .ats-input-panel,
+    .resume-form-panel {
+        grid-template-columns: 1fr;
+    }
+    .job-card {
+        flex-direction: column;
+        padding: 1.2rem;
+    }
+    
+    /* Make inputs full width */
+    .search-input-group {
+        flex-direction: column;
+        width: 100%;
+    }
+    .search-btn {
+        width: 100%;
+    }
+
+    /* Modals */
+    .modal-box {
+        padding: 20px;
+    }
+    
+    .form-row {
+        display: flex; /* Override grid */
+        flex-direction: column;
+        gap: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .globe-wrapper {
+        flex: 0 0 280px !important;
+        width: 280px !important;
+        height: 280px !important;
+    }
+    .hero-title {
+        font-size: 2.5rem !important;
+    }
+    .world-map-container {
+        height: 220px;
+    }
+    .world-map-title {
+        font-size: 1.7rem;
+    }
+}
