@@ -859,7 +859,7 @@ function renderLinkedInResults(data) {
 // ═══════════════════════════════════════════
 async function loadCourses() {
     try {
-        const res = await fetch(`http://localhost:5000/api/courses`);
+        const res = await fetch(`${API}/api/courses`);
         const data = await res.json();
         state.coursesData = data.courses;
         renderDomainTabs(data.domains || Object.keys(data.courses));
