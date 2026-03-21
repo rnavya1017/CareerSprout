@@ -17,7 +17,7 @@ const state = {
 };
 
 // ── API Base ──────────────────────────────
-const API = '';  // same origin
+const API = 'https://careersprout-production.up.railway.app'; // Production URL. Change to 'http://localhost:5000' for local dev.
 
 // ═══════════════════════════════════════════
 //   INIT
@@ -136,7 +136,7 @@ async function handleLogin() {
     if (!email || !pass) return showToast('Please fill in all fields', 'error');
 
     try {
-        const res = await fetch(`http://localhost:5000/api/auth/login`, {
+        const res = await fetch(`${API}/api/auth/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password: pass })
@@ -167,7 +167,7 @@ async function handleSignup() {
     if (password.length < 8) return showToast('Password must be at least 8 characters', 'error');
 
     try {
-        const res = await fetch(`http://localhost:5000/api/auth/signup`, {
+        const res = await fetch(`${API}/api/auth/signup`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ firstName, lastName, email, password, targetRole })
@@ -198,7 +198,7 @@ async function loadUser() {
 
         // Verify token is still valid in background
         try {
-            const res = await fetch(`http://localhost:5000/api/auth/me`, {
+            const res = await fetch(`${API}/api/auth/me`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (res.ok) {
@@ -272,7 +272,7 @@ async function fetchJobs(page = 1) {
     try {
         const token = localStorage.getItem('jn_token') || '';
         const params = new URLSearchParams({ what: query, where: location, page, results_per_page: 12, sort_by: sortBy });
-        const res = await fetch(`http://localhost:5000/api/jobs?${params}`, {
+        const res = await fetch(`${API}/api/jobs?${params}`, {
             headers: { 'Authorization': token }
         });
         if (!res.ok) throw new Error('API error');
