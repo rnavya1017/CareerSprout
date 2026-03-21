@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerSprout - Courses</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="script.js"></script>
+</head>
+<body class="bg-neutral-50 dark:bg-black dark:text-white transition-colors antialiased min-h-screen pt-24">
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-gray-200 dark:border-neutral-800">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-green-600">🌱 CareerSprout</span>
+            </a>
+            <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+                <a href="job-search.html" class="hover:text-blue-600">Job Search</a>
+                <a href="resume-builder.html" class="hover:text-blue-600">Resume</a>
+                <a href="resume-analyzer.html" class="hover:text-blue-600">Screening</a>
+                <a href="courses.html" class="text-blue-600">Courses</a>
+                <a href="linkedin-tips.html" class="hover:text-blue-600">LinkedIn</a>
+            </div>
+            <div id="auth-buttons" class="flex items-center gap-4"></div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4 pb-20 mt-10">
+        <h1 class="text-4xl font-bold mb-4">Curated Learning Paths</h1>
+        <p class="text-neutral-500 mb-12">Level up your tech skills with the best free resources separated by domain technology.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <a href="https://www.youtube.com/c/CodeWithHarry" target="_blank" class="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all group">
+                <div class="h-12 w-12 bg-red-100 dark:bg-red-900/30 text-red-600 rounded-xl flex items-center justify-center font-bold mb-6 group-hover:scale-110 transition-transform">▶</div>
+                <h3 class="text-xl font-bold mb-2">CodeWithHarry</h3>
+                <p class="text-sm text-neutral-500 mb-6">Master web development (HTML, CSS, JS, Python, Django) with comprehensive Hindi tutorials.</p>
+                <span class="px-3 py-1 bg-neutral-100 dark:bg-neutral-800 text-xs font-bold rounded-lg border border-neutral-200 dark:border-neutral-700">Web Dev</span>
+            </a>
+
+            <a href="https://www.youtube.com/c/ApnaCollegeOfficial" target="_blank" class="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all group">
+                <div class="h-12 w-12 bg-purple-100 dark:bg-purple-900/30 text-purple-600 rounded-xl flex items-center justify-center font-bold mb-6 group-hover:scale-110 transition-transform">▶</div>
+                <h3 class="text-xl font-bold mb-2">Apna College</h3>
+                <p class="text-sm text-neutral-500 mb-6">Complete Java + DSA roadmaps and algorithms explained powerfully for placement preparations.</p>
+                <span class="px-3 py-1 bg-neutral-100 dark:bg-neutral-800 text-xs font-bold rounded-lg border border-neutral-200 dark:border-neutral-700">DSA & Java</span>
+            </a>
+
+            <a href="https://www.youtube.com/c/Telusko" target="_blank" class="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all group">
+                <div class="h-12 w-12 bg-blue-100 dark:bg-blue-900/30 text-blue-600 rounded-xl flex items-center justify-center font-bold mb-6 group-hover:scale-110 transition-transform">▶</div>
+                <h3 class="text-xl font-bold mb-2">Telusko</h3>
+                <p class="text-sm text-neutral-500 mb-6">Dive deep into backend frameworks like Spring Boot, Hibernate, and advanced Java architectures.</p>
+                <span class="px-3 py-1 bg-neutral-100 dark:bg-neutral-800 text-xs font-bold rounded-lg border border-neutral-200 dark:border-neutral-700">Backend & Java</span>
+            </a>
+
+            <a href="https://www.youtube.com/watch?v=RPa3_AD1_Vs" target="_blank" class="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all group">
+                <div class="h-12 w-12 bg-orange-100 dark:bg-orange-900/30 text-orange-600 rounded-xl flex items-center justify-center font-bold mb-6 group-hover:scale-110 transition-transform">▶</div>
+                <h3 class="text-xl font-bold mb-2">Fireship</h3>
+                <p class="text-sm text-neutral-500 mb-6">Learn cutting edge tech concepts, JavaScript frameworks, and database architecture in 100 seconds.</p>
+                <span class="px-3 py-1 bg-neutral-100 dark:bg-neutral-800 text-xs font-bold rounded-lg border border-neutral-200 dark:border-neutral-700">Architecture</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

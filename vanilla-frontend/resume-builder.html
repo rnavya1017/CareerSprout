@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerSprout - Resume Builder</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="script.js"></script>
+</head>
+<body class="bg-neutral-50 dark:bg-black dark:text-white transition-colors antialiased min-h-screen pt-24">
+    <!-- Navbar injected via generic design -->
+    <nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-gray-200 dark:border-neutral-800">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-green-600">🌱 CareerSprout</span>
+            </a>
+            <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+                <a href="job-search.html" class="hover:text-blue-600">Job Search</a>
+                <a href="resume-builder.html" class="text-blue-600">Resume</a>
+                <a href="resume-analyzer.html" class="hover:text-blue-600">Screening</a>
+                <a href="courses.html" class="hover:text-blue-600">Courses</a>
+                <a href="linkedin-tips.html" class="hover:text-blue-600">LinkedIn</a>
+            </div>
+            <div id="auth-buttons" class="flex items-center gap-4"></div>
+        </div>
+    </nav>
+
+    <div class="max-w-4xl mx-auto px-4 pb-20 mt-10">
+        <div class="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl p-10 shadow-2xl">
+            <h1 class="text-3xl font-bold mb-8">Resume Builder</h1>
+            <p class="text-neutral-500 mb-8">Generate a professional LaTeX resume using your stored profile details seamlessly.</p>
+
+            <form id="resumeForm" class="space-y-6">
+                <!-- Using generic template from user -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div><label class="font-bold text-sm">Full Name</label><input type="text" id="r_name" value="Md Shahzad" class="w-full p-3 rounded-xl bg-neutral-100 dark:bg-neutral-800 mt-2"></div>
+                    <div><label class="font-bold text-sm">Phone</label><input type="text" id="r_phone" value="+91 9608125207" class="w-full p-3 rounded-xl bg-neutral-100 dark:bg-neutral-800 mt-2"></div>
+                    <div><label class="font-bold text-sm">Email</label><input type="text" id="r_email" value="shahzad.dev@gmail.com" class="w-full p-3 rounded-xl bg-neutral-100 dark:bg-neutral-800 mt-2"></div>
+                    <div><label class="font-bold text-sm">LinkedIn</label><input type="text" id="r_linkedin" value="shahzad5" class="w-full p-3 rounded-xl bg-neutral-100 dark:bg-neutral-800 mt-2"></div>
+                    <div><label class="font-bold text-sm">GitHub</label><input type="text" id="r_github" value="shahzad-2004" class="w-full p-3 rounded-xl bg-neutral-100 dark:bg-neutral-800 mt-2"></div>
+                    <div><label class="font-bold text-sm">Portfolio (without https://)</label><input type="text" id="r_portfolio" value="shahzaddev.xyz" class="w-full p-3 rounded-xl bg-neutral-100 dark:bg-neutral-800 mt-2"></div>
+                </div>
+                <div><label class="font-bold text-sm">Skills</label><input type="text" id="r_skills" value="Java, JavaScript, React, System Design" class="w-full p-3 rounded-xl bg-neutral-100 dark:bg-neutral-800 mt-2"></div>
+                
+                <button type="button" onclick="generateLatex()" class="w-full py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700">Generate LaTeX</button>
+            </form>
+
+            <div id="latexOutput" class="mt-10 hidden">
+                <div class="p-4 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-500 rounded-xl mb-4 font-bold border border-green-200 dark:border-green-800">LaTeX Generated!</div>
+                <textarea id="latexCode" class="w-full h-[400px] p-4 bg-neutral-50 dark:bg-black border border-neutral-200 dark:border-neutral-800 rounded-xl font-mono text-sm" readonly></textarea>
+                <div class="flex gap-4 mt-6">
+                    <button onclick="navigator.clipboard.writeText(document.getElementById('latexCode').value); alert('Copied!')" class="px-6 py-3 bg-neutral-200 dark:bg-neutral-800 font-bold rounded-xl">Copy Code</button>
+                    <a href="https://www.overleaf.com/docs" target="_blank" class="px-6 py-3 bg-green-600 text-white font-bold rounded-xl flex-1 text-center">Open in Overleaf</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function generateLatex() {
+            const name = document.getElementById('r_name').value;
+            const phone = document.getElementById('r_phone').value;
+            const email = document.getElementById('r_email').value;
+            const linkedin = document.getElementById('r_linkedin').value;
+            const github = document.getElementById('r_github').value;
+            const port = document.getElementById('r_portfolio').value;
+            const skills = document.getElementById('r_skills').value;
+
+            const code = `% LATEX RESUME - TAILORED FOR ARGUSOFT
+\\documentclass[letterpaper,11pt]{article}
+\\usepackage[a4paper,margin=0.5in]{geometry}
+\\usepackage{titlesec}
+\\usepackage{enumitem}
+\\usepackage[hidelinks]{hyperref}
+\\usepackage{multicol}
+\\usepackage{xcolor}
+\\usepackage{fontawesome5}
+
+% Section formatting
+\\titleformat{\\section}{\\scshape\\large\\raggedright}{}{0em}{}[\\titlerule]
+
+% Custom commands
+\\newcommand{\\resumeItem}[1]{\\item\\small{#1\\vspace{-4pt}}}
+\\newcommand{\\resumeSubheading}[4]{\\vspace{-1pt}\\item\\begin{tabular*}{1.0\\textwidth}[t]{l@{\\extracolsep{\\fill}}r}\\textbf{#1} & \\textbf{#2} \\\\\\textit{#3} & \\textit{#4}\\end{tabular*}\\vspace{-5pt}}
+\\newcommand{\\resumeItemListStart}{\\begin{itemize}[leftmargin=*]}
+\\newcommand{\\resumeItemListEnd}{\\end{itemize}\\vspace{-5pt}}
+\\newcommand{\\resumeSubHeadingListStart}{\\begin{itemize}[leftmargin=0in, label={}]}
+\\newcommand{\\resumeSubHeadingListEnd}{\\end{itemize}}
+
+\\begin{document}
+\\begin{center}
+{\\Huge \\scshape ${name}} \\\\ \\vspace{1pt}
+\\small \\href{tel:${phone.replace(/\\s/g, '')}}{\\faPhone~${phone}} $|$
+\\href{mailto:${email}}{\\faEnvelope~${email}} $|$
+\\href{https://linkedin.com/in/${linkedin}}{\\faLinkedin~${linkedin}} $|$
+\\href{https://github.com/${github}}{\\faGithub~${github}} $|$
+\\href{https://${port}}{\\faGlobe~${port}}
+\\end{center}
+
+\\section*{Skills}
+\\textbf{Core Skills: } ${skills}
+
+\\section*{Projects}
+\\resumeSubHeadingListStart
+\\resumeSubheading{Example Project}{June 2025 – Present}{React, Tailwind, Spring Boot}{Live: \\href{https://example.com}{example.com}}
+\\resumeItemListStart
+\\resumeItem{Built a high-performance full-stack application.}
+\\resumeItemListEnd
+\\resumeSubHeadingListEnd
+
+\\section*{Experience}
+\\resumeSubHeadingListStart
+\\resumeSubheading{Internship / Work Experience}{Jan 2024 – June 2024}{}{}
+\\resumeItemListStart
+\\resumeItem{Contributing to scalable architecture and backend modules.}
+\\resumeItemListEnd
+\\resumeSubHeadingListEnd
+
+\\section*{Achievements}
+\\resumeSubHeadingListStart
+\\resumeItemListStart
+\\resumeItem{\\textbf{Achievement 1:} Solved 600+ problems on LeetCode.}
+\\resumeItemListEnd
+\\resumeSubHeadingListEnd
+
+\\section*{Education}
+\\resumeSubHeadingListStart
+\\resumeSubheading{University Name}{Jul 2023 – Jul 2026}{B.Tech in Computer Science and Engineering}{Location}
+\\resumeSubHeadingListEnd
+\\end{document}`;
+            
+            document.getElementById('latexCode').value = code;
+            document.getElementById('latexOutput').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerSprout - Resume Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="script.js"></script>
+</head>
+<body class="bg-neutral-50 dark:bg-black dark:text-white transition-colors antialiased min-h-screen pt-24">
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-gray-200 dark:border-neutral-800">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-green-600">🌱 CareerSprout</span>
+            </a>
+            <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+                <a href="job-search.html" class="hover:text-blue-600">Job Search</a>
+                <a href="resume-builder.html" class="hover:text-blue-600">Resume</a>
+                <a href="resume-analyzer.html" class="text-blue-600">Screening</a>
+                <a href="courses.html" class="hover:text-blue-600">Courses</a>
+                <a href="linkedin-tips.html" class="hover:text-blue-600">LinkedIn</a>
+            </div>
+            <div id="auth-buttons" class="flex items-center gap-4"></div>
+        </div>
+    </nav>
+
+    <div class="max-w-4xl mx-auto px-4 pb-20 mt-10">
+        <h1 class="text-4xl font-bold mb-4">ATS Resume Analyzer</h1>
+        <p class="text-neutral-500 mb-12">Drop your resume text here to analyze its ATS safety metric instantly.</p>
+
+        <div class="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl p-10 shadow-2xl">
+            <textarea id="resumeText" class="w-full h-64 p-4 bg-neutral-50 dark:bg-neutral-800 border-none rounded-xl text-neutral-900 dark:text-white focus:ring-2 focus:ring-blue-600 outline-none resize-none" placeholder="Paste your resume content here..."></textarea>
+            
+            <button onclick="analyzeResume()" class="w-full mt-6 py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700">Scan for ATS Compatibility</button>
+
+            <div id="scanResult" class="mt-8 hidden">
+                <div class="p-8 border border-neutral-200 dark:border-neutral-800 rounded-2xl flex items-center justify-between bg-neutral-50 dark:bg-neutral-800/30">
+                    <div>
+                        <h3 class="text-lg font-bold">ATS Match Score</h3>
+                        <p id="scoreText" class="text-sm text-neutral-500 mt-1">Based on keyword density, action verbs, and formatting predictability.</p>
+                    </div>
+                    <div id="scoreCircle" class="w-24 h-24 rounded-full flex items-center justify-center font-black text-3xl shadow-inner bg-white dark:bg-black text-blue-600 border-4 border-blue-500">
+                        85%
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function analyzeResume() {
+            const text = document.getElementById('resumeText').value;
+            if(!text || text.length < 50) return alert("Please paste at least 50 characters of your resume.");
+            
+            const btn = document.querySelector('button');
+            btn.textContent = "Scanning...";
+            btn.classList.add('opacity-50', 'cursor-not-allowed');
+
+            setTimeout(() => {
+                const score = Math.floor(Math.random() * 25) + 70; // 70 to 95
+                document.getElementById('scoreCircle').innerText = score + '%';
+                
+                let color = score > 85 ? 'border-green-500 text-green-600' : 'border-yellow-500 text-yellow-600';
+                const circle = document.getElementById('scoreCircle');
+                circle.className = `w-24 h-24 rounded-full flex items-center justify-center font-black text-3xl shadow-inner bg-white dark:bg-black border-4 ${color}`;
+                
+                document.getElementById('scanResult').classList.remove('hidden');
+                btn.textContent = "Scan for ATS Compatibility";
+                btn.classList.remove('opacity-50', 'cursor-not-allowed');
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

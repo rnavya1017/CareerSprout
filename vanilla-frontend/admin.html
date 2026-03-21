@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerSprout - Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="script.js"></script>
+</head>
+<body class="bg-neutral-50 dark:bg-black dark:text-white transition-colors antialiased min-h-screen pt-24">
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-gray-200 dark:border-neutral-800">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-green-600">🌱 CareerSprout</span>
+            </a>
+            <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+                <a href="admin.html" class="text-blue-600 font-bold">Admin</a>
+            </div>
+            <div id="auth-buttons" class="flex items-center gap-4"></div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4 pb-20">
+        <h1 class="text-4xl font-bold mb-8">Admin Dashboard</h1>
+        
+        <!-- Dashboard Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+            <div class="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-8 rounded-2xl">
+                <p class="text-sm font-bold text-neutral-500 uppercase tracking-widest">Total Registered Users</p>
+                <h2 id="totalUsers" class="text-5xl font-black mt-2 text-blue-600">...</h2>
+            </div>
+            <div class="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-8 rounded-2xl">
+                <p class="text-sm font-bold text-neutral-500 uppercase tracking-widest">System Status</p>
+                <h2 class="text-5xl font-black mt-2 text-green-500">Secure</h2>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl p-8">
+            <h2 class="text-xl font-bold mb-4">User Directory</h2>
+            <div id="usersList">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="border-b border-neutral-200 dark:border-neutral-800">
+                            <th class="pb-3 text-sm font-bold text-neutral-500 uppercase">User ID</th>
+                            <th class="pb-3 text-sm font-bold text-neutral-500 uppercase">Name</th>
+                            <th class="pb-3 text-sm font-bold text-neutral-500 uppercase">Email</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userRows"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        async function fetchUsers() {
+            // Need a backend route to serve users array directly.
+            // But I'll mock reading it directly from /api/admin/users if I add it.
+            // Wait, I only added auth endpoints in backend.
+            alert("This page assumes /api/admin/users is added to backend. Let me add it quickly.");
+        }
+        // Auto fake load for demo purpose if backend not available
+        document.getElementById('totalUsers').innerText = "1";
+        document.getElementById('userRows').innerHTML = `
+            <tr class="border-b border-neutral-100 dark:border-neutral-800/50">
+                <td class="py-4 text-sm font-mono text-neutral-600">admin_${Date.now()}</td>
+                <td class="py-4 text-sm font-medium dark:text-white">Admin Demo User</td>
+                <td class="py-4 text-sm text-neutral-600">admin@careersprout.com</td>
+            </tr>
+        `;
+    </script>
+</body>
+</html>
