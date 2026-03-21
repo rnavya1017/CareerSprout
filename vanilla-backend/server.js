@@ -8,8 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Serve static frontend
-app.use(express.static(path.join(__dirname, '../vanilla-frontend')));
+// Frontend is deployed separately, so no static file serving is needed here.
 
 // Database Setup
 const DB_FILE = path.join(__dirname, 'users.json');
@@ -203,9 +202,9 @@ app.get('/api/courses', (req, res) => {
     res.json({ courses, domains });
 });
 
-// Route catch-all to redirect to index
+// Route catch-all to redirect to API health
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../vanilla-frontend', 'index.html'));
+    res.send('CareerSprout API Backend is successfully running on Railway!');
 });
 
 const PORT = process.env.PORT || 5000;
