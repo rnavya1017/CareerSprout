@@ -1,0 +1,10 @@
+{
+  "name": "careersprout",
+  "version": "1.0.0",
+  "description": "Deployment configuration for CareerSprout vanilla backend and frontend",
+  "private": true,
+  "scripts": {
+    "postinstall": "cd vanilla-backend && npm install",
+    "start": "node vanilla-backend/server.js"
+  }
+}
