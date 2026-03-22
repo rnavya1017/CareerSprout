@@ -17,7 +17,7 @@ const state = {
 };
 
 // ── API Base ──────────────────────────────
-const API = 'https://careersprout-production.up.railway.app'; // Production URL. Change to 'http://localhost:5000' for local dev.
+const API = 'careersprout-production.up.railway.app'; // Production URL. Change to 'http://localhost:5000' for local dev.
 
 // ═══════════════════════════════════════════
 //   INIT
