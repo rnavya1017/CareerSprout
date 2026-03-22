@@ -1,0 +1,43 @@
+graph TD
+    %% Styling
+    classDef frontend fill:#0f172a,stroke:#3b82f6,stroke-width:2px,color:#fff
+    classDef backend fill:#0f172a,stroke:#10b981,stroke-width:2px,color:#fff
+    classDef external fill:#1e293b,stroke:#a855f7,stroke-width:2px,color:#fff
+    classDef database fill:#334155,stroke:#94a3b8,stroke-width:2px,color:#fff
+
+    subgraph Client ["Client Browser (vanilla-frontend/)"]
+        UI_Core["DOM & Styling<br/>(index.html, style.css)"]:::frontend
+        App_Logic["App Logic & Routing<br/>(script.js)"]:::frontend
+        Globe3D["3D Visuals<br/>(globe3d.js - Three.js)"]:::frontend
+        CanvasMap["2D Animations<br/>(world-map.js - Canvas API)"]:::frontend
+        
+        UI_Core --- App_Logic
+        UI_Core --- Globe3D
+        UI_Core --- CanvasMap
+    end
+
+    subgraph Server ["Node.js Backend (vanilla-backend/)"]
+        Express["Express Gateway API<br/>(server.js)"]:::backend
+        EnvVars[".env Secrets<br/>(API Keys)"]:::database
+        UserStorage["Local Storage<br/>(users.json)"]:::database
+        
+        Express -. "Reads Config" .-> EnvVars
+        Express -- "CRUD Operations" --> UserStorage
+    end
+
+    subgraph ThirdParty ["External APIs & Microservices"]
+        Adzuna["Adzuna API<br/>(Job Listings Aggregator)"]:::external
+        AI_Nexus["job-nexus-production<br/>(ATS Scoring, Resume AI)"]:::external
+        RiskAPI["Custom API Endpoint<br/>(/api/jobs/verify)"]:::external
+        YouTube["YouTube API Proxy<br/>(/api/courses)"]:::external
+    end
+
+    %% Communication Flow
+    App_Logic -- "Auth & State Req<br/>(REST HTTP)" --> Express
+    App_Logic -- "Job Search Req" --> Express
+    App_Logic -- "Resume/AI Req" --> Express
+    
+    Express -- "Proxied Secure Call" --> Adzuna
+    Express -- "Screening Validation" --> RiskAPI
+    Express -- "Fetches Edu Content" --> YouTube
+    Express -- "AI Processing" --> AI_Nexus

@@ -4,5 +4,14 @@
     "name": "R Navya",
     "email": "ravagunta.navya@gmail.com",
     "password": "navya1017"
+  },
+  {
+    "id": "1774164456124",
+    "firstName": "Navya",
+    "lastName": "Meow",
+    "email": "navyachinnu1017@gmail.com",
+    "password": "navya1017",
+    "role": "user",
+    "targetRole": ""
   }
 ]

@@ -17,7 +17,8 @@ const state = {
 };
 
 // ── API Base ──────────────────────────────
-const API = 'https://careersprout-production.up.railway.app'; // Production URL. Change to 'http://localhost:5000' for local dev.
+const isDev = location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:';
+const API = isDev ? 'http://localhost:5000' : 'https://careersprout-production.up.railway.app';
 
 // ═══════════════════════════════════════════
 //   INIT
@@ -1098,3 +1099,5 @@ function initGlowingEffect() {
         });
     });
 }
+
+

@@ -2,7 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
+
 require('dotenv').config();
+
 
 const app = express();
 app.use(cors());
@@ -157,6 +159,8 @@ app.post('/api/jobs/verify', (req, res) => {
 
     res.json({ trustPct, verdict, verdictIcon, verdictColor, riskScore, signals, linkedinUrl });
 });
+
+
 
 // ------ YOUTUBE COURSES DATA ------
 app.get('/api/courses', (req, res) => {

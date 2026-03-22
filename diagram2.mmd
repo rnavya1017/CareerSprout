@@ -1,0 +1,33 @@
+sequenceDiagram
+    autonumber
+    actor User
+    participant Browser as Vanilla JS App
+    participant Server as Node DB/Express
+    participant Adzuna as Adzuna API
+    participant Nexus as AI Services
+
+    User->>Browser: Enters Credentials & Clicks Login
+    Browser->>Server: POST /login (Email, Password)
+    Server->>Server: Validate against users.json
+    alt Invalid Credentials
+        Server-->>Browser: 401 Unauthorized
+        Browser-->>User: Show Error Toast
+    else Valid Credentials
+        Server-->>Browser: 200 OK + JWT/Session Token
+        Browser->>Browser: Store Token in localStorage
+        Browser-->>User: Redirect to Dashboard
+    end
+
+    User->>Browser: Searches "Frontend Developer in London"
+    Browser->>Server: GET /api/jobs?role=Frontend... + Token
+    Server->>Server: Verify Auth Request
+    Server->>Adzuna: GET Jobs using Secret API Keys
+    Adzuna-->>Server: Return Job JSON payload
+    
+    par Fraud Analysis
+        Server->>Nexus: Analyze Job Postings for Fraud Risk
+        Nexus-->>Server: Trust Scores per Job
+    end
+
+    Server-->>Browser: Merged Job Data + Risk Scores
+    Browser-->>User: Render Job Cards with Trust Badges
